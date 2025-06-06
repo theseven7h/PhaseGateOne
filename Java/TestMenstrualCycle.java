@@ -19,5 +19,8 @@ public class TestMenstrualCycle {
 		LocalDate next = mc.getNextCycleDate("25/05/2025", 28);
 		String actual = next.format(fmt);
 		String expected = "22/06/2025";
+		assertEquals(actual, expected);
 	}
+	
+	
 }
