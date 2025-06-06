@@ -1,7 +1,9 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 
 public class TestMenstrualCycle {
 
@@ -10,7 +12,7 @@ public class TestMenstrualCycle {
 
 	@Test
 	public void testGetNextCycleDateFunctionExists() {
-		LocalDate next = mc.getNextCycleDate("25/05/2025", 28);
+		mc.getNextCycleDate("25/05/2025", 28);
 	}
 	
 	@Test
@@ -23,7 +25,7 @@ public class TestMenstrualCycle {
 	
 	@Test
 	public void testGetOvulationDateFunctionExists() {
-		LocalDate od = mc.getOvulationDate("25/05/2025", 28);
+		mc.getOvulationDate("25/05/2025", 28);
 	}
 	
 	@Test
@@ -34,4 +36,16 @@ public class TestMenstrualCycle {
 		assertEquals(actual, expected);
 	}
 	
+	@Test
+	public void testGetFertileWindowFunctionExists() {
+		mc.getFertileWindow("25/05/2025", 28);
+	}
+	
+	@Test
+	public void testGetFertileWindowFunctionReturnsCorrectDates() {
+		LocalDate[] next = mc.getFertileWindow("25/05/2025", 28);
+		String[] actual = new String[]{next[0].format(fmt), next[1].format(fmt)};
+		String[] expected = {"03/06/2025", "09/06/2025"};
+		assertArrayEquals(actual, expected);
+	}	
 }
