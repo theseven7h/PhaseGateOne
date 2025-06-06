@@ -25,7 +25,7 @@ def get_safe_period(date, cycle_days):
 	
 	
 	
-lcd = datetime.strptime("25/05/2025", input)
+'''lcd = datetime.strptime("25/05/2025", input)
 fertile_window = get_fertile_window("25/05/2025", 28)
 safe_period = get_safe_period("25/05/2025", 28)
 
@@ -37,4 +37,4 @@ print("Expected ovulation: " + get_ovulation_date("25/05/2025", 28).strftime(out
 
 print("Expected fertile window:" + fertile_window[0].strftime(output) + "to", fertile_window[1].strftime(output))
 
-print("Expected safe period: " + safe_period[0][0].strftime(output) + " to ", safe_period[0][1].strftime(output) + " and " + safe_period[1][0].strftime(output) + " to " + safe_period[1][1].strftime(output))
+print("Expected safe period: " + safe_period[0][0].strftime(output) + " to ", safe_period[0][1].strftime(output) + " and " + safe_period[1][0].strftime(output) + " to " + safe_period[1][1].strftime(output))'''
