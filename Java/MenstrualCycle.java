@@ -21,16 +21,12 @@ public class MenstrualCycle {
 		return new LocalDate[]{fwb,fwa};
 	}
 	
-	/*public static LocalDate getSafePeriodStart(String date, int days) {
-		LocalDate sps = getFertileWindowBefore(date, days).minusDays(1);
-		return sps;
+	public static LocalDate[][] getSafePeriod(String date, int days) {
+		LocalDate lastCycle = LocalDate.parse(date, fmt);
+		LocalDate[] safePeriod = getFertileWindow(date, days);
+		LocalDate nextCycle = getNextCycleDate(date, days);
+		return new LocalDate[][] {{lastCycle, safePeriod[0].minusDays(1)},{safePeriod[1].plusDays(1), nextCycle}};
 	}
-	
-	public static LocalDate getSafePeriodEnd(String date, int days) {
-		LocalDate spe = getFertileWindowAfter(date, days).plusDays(1);
-		return spe;
-	}*/
-	
 	
 	
 	
@@ -50,5 +46,9 @@ public class MenstrualCycle {
 		
 		
 		System.out.println("Expected fertile window: " + getFertileWindow("25/05/2025", 28)[0].format(output) + " to " + getFertileWindow("25/05/2025", 28)[1].format(output));
+		
+		System.out.println("Expected safe period: " + getSafePeriod("25/05/2025", 28)[0][0].format(output) + " to " + getSafePeriod("25/05/2025", 28)[0][1].format(output) + " and " + getSafePeriod("25/05/2025", 28)[1][0].format(output) + " to " + getSafePeriod("25/05/2025", 28)[1][1].format(output));
 	}
+	
+	
 }

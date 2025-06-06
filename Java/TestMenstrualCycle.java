@@ -30,8 +30,8 @@ public class TestMenstrualCycle {
 	
 	@Test
 	public void testGetOvulationDateFunctionReturnsCorrectDate() {
-		LocalDate next = mc.getOvulationDate("25/05/2025", 28);
-		String actual = next.format(fmt);
+		LocalDate od = mc.getOvulationDate("25/05/2025", 28);
+		String actual = od.format(fmt);
 		String expected = "08/06/2025";
 		assertEquals(actual, expected);
 	}
@@ -43,9 +43,22 @@ public class TestMenstrualCycle {
 	
 	@Test
 	public void testGetFertileWindowFunctionReturnsCorrectDates() {
-		LocalDate[] next = mc.getFertileWindow("25/05/2025", 28);
-		String[] actual = new String[]{next[0].format(fmt), next[1].format(fmt)};
+		LocalDate[] fw = mc.getFertileWindow("25/05/2025", 28);
+		String[] actual = new String[]{fw[0].format(fmt), fw[1].format(fmt)};
 		String[] expected = {"03/06/2025", "09/06/2025"};
 		assertArrayEquals(actual, expected);
 	}	
+	
+	@Test
+	public void testGetSafePeriodFunctionExists() {
+		mc.getSafePeriod("25/05/2025", 28);
+	}
+	
+	@Test
+	public void testGetSafePeriodFunctionReturnsCorrectDates() {
+		LocalDate[][] sp = mc.getSafePeriod("25/05/2025", 28);
+		String[][] actual = new String[][]{{sp[0][0].format(fmt), sp[0][1].format(fmt)}, {sp[1][0].format(fmt), sp[1][1].format(fmt)}};
+		String[][] expected = new String[][]{{"25/05/2025", "02/06/2025"}, {"10/06/2025", "22/06/2025"}};
+		assertArrayEquals(actual, expected);
+	}
 }
