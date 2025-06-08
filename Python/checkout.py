@@ -25,7 +25,6 @@ def get_quantity():
 	
 def get_price():
 	pricePerUnit = 0;
-	
 	while True: 
 		entry = input("How much per unit: ")
 		try:
@@ -45,15 +44,35 @@ def get_cashier_name():
 	cashier_name = input("What is your name: ")
 	return cashier_name
 
+def get_subtotal(all_details):
+	subtotal = 0
+	for detail in range(len(all_details)):
+		total = float(all_details[detail].get("total"))
+		subtotal += total;
+	return subtotal
 
-
-
-
+def get_discount_amount(subtotal):
+	discount = 0;
+	while True: 
+		entry = input("How much discount will they get(%): ")
+		try:
+			discount = float(entry)
+			if discount <= 0:
+				print("Discount cannot be less than one")
+				continue
+			break
+		except ValueError:
+			print("Invalid discount! Try again")
+	return subtotal * (discount / 100)
 
 
 	
 		
 def main():
+	details = {}
+	all_details = []
+	
+	
 	quantity = get_quantity()
 	price = get_price()
 	print(get_item_total(quantity, price))
