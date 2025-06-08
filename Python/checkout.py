@@ -106,10 +106,90 @@ def get_response():
 def main():
 	details = {}
 	all_details = []
+
+	customer_name = get_customer_name()
+	item_bought = ""
+	quantity = 0
+	price_per_unit = 0
+	item_total = 0
 	
+	while True:
+		details = {}
 	
-	quantity = get_quantity()
-	price = get_price()
-	print(get_item_total(quantity, price))
+		item_bought = get_item_bought()
+		details["item"] = item_bought
+		
+		quantity = get_quantity()
+		details["qty"] = str(quantity)
+		
+		price_per_unit = get_price()
+		details["price"] = str(price_per_unit)
+		
+		item_total = get_item_total(quantity, price_per_unit)
+		details["total"] = str(item_total)
+					
+		all_details.append(details)
+		
+		response = get_response()
+		if response == False:
+			break 
+
+	cashier_name = get_cashier_name()
+	subtotal = get_subtotal(all_details)
+	discount = get_discount_amount(subtotal)
+	vat = get_vat(subtotal)
+	bill_total = get_bill_total(subtotal, discount, vat)
+	amount_paid = get_amount_paid(bill_total)
+	balance = get_balance(amount_paid, bill_total)
+
+	date = datetime.today()
+	print();
+	print("""
+SEMICOLON STORES
+MAIN BRANCH
+LOCATION: 312, HERBERT MACAULAY WAY, SABO YABA, LAGOS.
+TEL: 03293828343
+""")
 	
-#main()
+	print("Date: " + datetime.strftime(date, "%d-%b-%y %I:%M:%S %p"));
+	print("Cashier: " + cashier_name);
+	print("Customer Name: " + customer_name);
+
+	sym = ""
+	for i in range(54): 
+		sym += "="
+	print()
+	print(sym)
+
+	print(f'{"ITEM":>20}{"QTY":>6}{"PRICE":>14}{"TOTAL(NGN)":>14}')
+	sym2 = ""
+	for i in range(54): 
+		sym2 += "="
+	print(sym2)
+	
+	for j in range(len(all_details)):
+		item = all_details[j]["item"]
+		qty = int(all_details[j]["qty"])
+		ttu = float(all_details[j]["price"])
+		itm_total = float(all_details[j]["total"])
+		
+		print(f'{item:>20}{qty:>6}{ttu:>14}{itm_total:>14}')
+		
+	print(sym2)
+	print(f'{"Sub Total":>40}{subtotal:14.2f}')
+	print(f'{"Discount":>40}{discount:14.2f}')
+	print(f'{"VAT @ 7.50%:":>40}{vat:14.2f}')
+
+	print(sym)
+
+	print(f'{"Bill Total:":>40}{bill_total:14.2f}')
+	print(f'{"Amount Paid:":>40}{amount_paid:14.2f}')
+	print(f'{"Balance:":>40}{balance:14.2f}')
+
+	print(sym)
+	print(f'             {"THANK YOU FOR YOUR PATRONAGE":>28}')
+
+	print(sym)
+
+	
+main()
