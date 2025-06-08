@@ -65,8 +65,37 @@ def get_discount_amount(subtotal):
 			print("Invalid discount! Try again")
 	return subtotal * (discount / 100)
 
+def get_vat(subtotal):
+	VAT = 7.5;
+	return subtotal * (VAT / 100);
 
+def get_bill_total(subtotal, discount, vat):
+	return subtotal - discount + vat;
 	
+def get_amount_paid(bill_total):
+	amount_paid = 0;
+	while True: 
+		entry = input("How much did the customer give to you: ")
+		try:
+			amount_paid = float(entry)
+			if amount_paid <= bill_total:
+				print("Amount insufficient! Try again")
+				continue
+			break
+		except ValueError:
+			print("Invalid amount! Try again")
+	return amount_paid
+
+def get_balance(amount_paid, bill_total):
+	return amount_paid - bill_total
+
+
+
+
+
+
+
+
 		
 def main():
 	details = {}

@@ -90,7 +90,58 @@ class TestCheckOut(TestCase):
 		actual = checkout.get_discount_amount(1000)
 		expected = 100
 		self.assertEqual(actual, expected)
+	
+	def test_get_discount_vat_function_exists(self):
+		self.assertIsNotNone(checkout.get_vat(1000))
+		
+	def test_get_vat_function(self):
+		actual = checkout.get_vat(1000)
+		expected = 75
+		self.assertEqual(actual, expected)
+	
+	def test_get_discount_bill_total_function_exists(self):
+		subtotal = 5000 
+		discount = 10 
+		vat = checkout.get_vat(subtotal)
+		self.assertIsNotNone(checkout.get_bill_total(subtotal, discount, vat))
+		
+	def test_get_bill_total_function(self):
+		subtotal = 5000 
+		discount_amount = 500 
+		vat = checkout.get_vat(subtotal)
+		actual = checkout.get_bill_total(subtotal, discount_amount, vat)
+		expected = 4875
+		self.assertEqual(actual, expected)
+	
+	def test_get_amount_paid_function_exists(self):
+		billtotal = 5000;
+		self.assertIsNotNone(checkout.get_amount_paid(billtotal))
+	
+	def test_get_amount_paid_function(self):
+		billtotal = 5000
+		actual = checkout.get_amount_paid(billtotal)
+		expected = 7000;
+		self.assertEqual(actual, expected)
+	
+	def test_get_balance_function_exists(self):
+		amount_paid = 10000 
+		billtotal = 9500
+		self.assertIsNotNone(checkout.get_balance(amount_paid, billtotal))
+	
+	def test_get_balance_function(self):
+		amount_paid = 10000 
+		billtotal = 9500
+		actual = checkout.get_balance(amount_paid, billtotal)
+		expected = 500;
+		self.assertEqual(actual, expected)
 	'''
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
