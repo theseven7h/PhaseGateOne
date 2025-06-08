@@ -135,8 +135,11 @@ class TestCheckOut(TestCase):
 		expected = 500;
 		self.assertEqual(actual, expected)
 	'''
+	def test_get_response_function_exists(self):
+		self.assertIsNotNone(checkout.get_response())	
 	
-	
+	def test_get_response_function(self):	
+		self.assertTrue(checkout.get_response())	
 	
 	
 	

@@ -89,7 +89,13 @@ def get_amount_paid(bill_total):
 def get_balance(amount_paid, bill_total):
 	return amount_paid - bill_total
 
-
+def get_response():
+	response = ""
+	while True:
+		response = input("Add more items (yes/no): ").strip().lower()
+		if(response in ["yes", "no"]):			
+			break
+	return response == "yes"
 
 
 
