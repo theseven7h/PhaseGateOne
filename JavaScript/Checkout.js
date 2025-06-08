@@ -86,7 +86,7 @@ const getDiscountAmount = () => {
 	return discount;	
 }
 
-const getVat = (double subtotal) => {
+const getVat = (subtotal) => {
 	const VAT = 7.5;
 	return subtotal * (VAT / 100);
 }
@@ -113,7 +113,7 @@ const getAmountPaid = (billTotal) => {
 	return amountPaid;	
 }	
 
-const getBalance(amountPaid, billTotal) {
+const getBalance = (amountPaid, billTotal) => {
 	return amountPaid - billTotal;
 }
 
@@ -121,11 +121,11 @@ const getResponse = () => {
 	response = "";
 	while(true) {
 		response = prompt("Add more items (yes/no): ").trim().toLowerCase();
-		if(response.equals("yes") || response.equals("no")) {
+		if(response === "yes" || response === "no") {
 			break;
 		}
 	}
-	return response.equals("yes");
+	return response === "yes";
 }
 
 const main = () => {
@@ -142,7 +142,7 @@ const main = () => {
 		details = {};
 	
 		itemBought = getItemBought();
-		details["item"] = itemBought);
+		details["item"] = itemBought;
 		
 		quantity = getQuantity();
 		details["qty"] = quantity.toString();
@@ -168,12 +168,12 @@ const main = () => {
 	let balance = getBalance(amountPaid, billTotal);
 	
 	console.log();
-	console.log("""
+	console.log(`
 SEMICOLON STORES
 MAIN BRANCH
 LOCATION: 312, HERBERT MACAULAY WAY, SABO YABA, LAGOS.
 TEL: 03293828343
-""");	
+`);	
 
 	console.log("Date: ");
 	console.log("Cashier: " + cashierName);
@@ -183,24 +183,36 @@ TEL: 03293828343
 	for(let i = 0; i < 54; i++) sym += "=";
 	console.log();
 	console.log(sym);
+	
+	console.log(`${"ITEM".padStart(20)}${"QTY".padStart(6)}${"PRICE".padStart(14)}${"TOTAL(NGN)".padStart(14)}`);
+	let sym2 = "";
+	for(let i = 0; i < 54; i++) sym2 += "-";
+	console.log(sym2);
 
+	for(let i = 0; i < allDetails.length; i++) {
+		let item = allDetails[i]["item"];
+		let qty = parseInt(allDetails[i]["qty"]);
+		let ttu = parseFloat(allDetails[i]["price"]);
+		let itmTotal = parseFloat(allDetails[i]["total"]);
+		
+		console.log(`${item.padStart(20)}${String(qty).padStart(6)}${String(ttu).padStart(14)}${String(itmTotal).padStart(14)}`);	
+	}	
 	
+	console.log(typeof subtotal, subtotal)
 	
+	console.log(sym2);
+	console.log(`${"Sub Total:".padStart(40)}${String(subtotal).padStart(14)}`);
+	console.log(`${"Discount:".padStart(40)}${String(discount).padStart(14)}`);
+	console.log(`${"VAT @ 7.50%:".padStart(40)}${String(vat).padStart(14)}`);
 	
+	console.log(sym);
 	
+	console.log(`${"Bill Total:".padStart(40)}${String(billTotal).padStart(14)}`);
+	console.log(`${"Amount Paid:".padStart(40)}${String(amountPaid).padStart(14)}`);
+	console.log(`${"Balance:".padStart(40)}${String(balance).padStart(14)}`);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	console.log(sym);
+	console.log(`${"             THANK YOU FOR YOUR PATRONAGE".padEnd(28)}`);	
 }
+
 main();
