@@ -62,7 +62,7 @@ const getCashierName = () => {
 const getSubtotal = (allDetails) => {
 	subtotal = 0;
 	for(let det = 0; det < allDetails.length; det++) {
-		total = parseFloat(allDetails[0]["total"]);
+		total = parseFloat(allDetails[det]["total"]);
 		subtotal += total;
 	}
 	return subtotal;
@@ -83,7 +83,7 @@ const getDiscountAmount = () => {
 		}
 		break;	
 	}
-	return discount;	
+	return subtotal * (discount / 100);	
 }
 
 const getVat = (subtotal) => {
@@ -151,7 +151,7 @@ const main = () => {
 		details["price"] = pricePerUnit.toString();
 		
 		itemTotal = getItemTotal(quantity, pricePerUnit);
-		details["total"] = toString();
+		details["total"] = itemTotal.toString();
 					
 		allDetails.push(details);
 		
@@ -195,24 +195,23 @@ TEL: 03293828343
 		let ttu = parseFloat(allDetails[i]["price"]);
 		let itmTotal = parseFloat(allDetails[i]["total"]);
 		
-		console.log(`${item.padStart(20)}${String(qty).padStart(6)}${String(ttu).padStart(14)}${String(itmTotal).padStart(14)}`);	
+		console.log(`${item.padStart(20)}${qty.toFixed(2).padStart(6)}${ttu.toFixed(2).padStart(14)}${itmTotal.toFixed(2).padStart(14)}`);	
 	}	
-	
-	console.log(typeof subtotal, subtotal)
-	
+		
 	console.log(sym2);
-	console.log(`${"Sub Total:".padStart(40)}${String(subtotal).padStart(14)}`);
-	console.log(`${"Discount:".padStart(40)}${String(discount).padStart(14)}`);
-	console.log(`${"VAT @ 7.50%:".padStart(40)}${String(vat).padStart(14)}`);
+	console.log(`${"Sub Total:".padStart(40)}${subtotal.toFixed(2).padStart(14)}`);
+	console.log(`${"Discount:".padStart(40)}${discount.toFixed(2).padStart(14)}`);
+	console.log(`${"VAT @ 7.50%:".padStart(40)}${vat.toFixed(2).padStart(14)}`);
 	
 	console.log(sym);
 	
-	console.log(`${"Bill Total:".padStart(40)}${String(billTotal).padStart(14)}`);
-	console.log(`${"Amount Paid:".padStart(40)}${String(amountPaid).padStart(14)}`);
-	console.log(`${"Balance:".padStart(40)}${String(balance).padStart(14)}`);
+	console.log(`${"Bill Total:".padStart(40)}${billTotal.toFixed(2).padStart(14)}`);
+	console.log(`${"Amount Paid:".padStart(40)}${amountPaid.toFixed(2).padStart(14)}`);
+	console.log(`${"Balance:".padStart(40)}${balance.toFixed(2).padStart(14)}`);
 	
 	console.log(sym);
 	console.log(`${"             THANK YOU FOR YOUR PATRONAGE".padEnd(28)}`);	
+	console.log(sym);
 }
 
 main();
