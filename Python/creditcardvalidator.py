@@ -32,7 +32,7 @@ def check_validity(entry):
 	for j in range(len(entry) - 1, -1, -2):
 		num = int(entry[j])
 		sum_odd_place += num
-	if (sum_even_place + sum_odd_place) % 10:
+	if (sum_even_place + sum_odd_place) % 10 == 0:
 		return "Valid"
 	else:
 		return "Invalid"	
@@ -73,4 +73,4 @@ def main():
 		display_result(entry)	
 		break	
 		
-#main()	 
+main()	 
