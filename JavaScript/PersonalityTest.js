@@ -189,8 +189,7 @@ ${xtics[j][k]}
 			else if(l == "B") countB++;
 		}
 		
-		if(countA > countB) personality.push("A");
-		else personality.push("B");
+		(countA > countB) ? personality.push("A") : personality.push("B");
 		
 		console.log(`
 Number of selected As: ${countA}		
@@ -199,17 +198,13 @@ Number of selected Bs: ${countB}
 		console.log();
 	}
 	
-	if(personality[0] == "A") personality[0] = "E";
-	else personality[0] = "I";
+	personality[0] = (personality[0] == "A") ? "E" : "I";
 	
-	if(personality[1] == "A") personality[1] = "S";
-	else personality[1] = "N";
+	personality[1] = (personality[1] == "A") ? "S" : "N";
 	
-	if(personality[2] == "A") personality[2] = "T";
-	else personality[2] = "F";
+	personality[2] = (personality[2] == "A") ? "T" : "F";
 	
-	if(personality[3] == "A") personality[3] = "J";
-	else personality[3] = "P";
+	personality[3] = (personality[3] == "A") ? "J" : "P";
 	
 	return personality;	
 }
@@ -382,9 +377,6 @@ The Mirror reveals your edge — refined, bold, and always forward.
 }
 
 
-
-
-
 const main = () => {
 	
 	
@@ -402,27 +394,5 @@ const main = () => {
 		break;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 main();
