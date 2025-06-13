@@ -102,8 +102,17 @@ public class TestStudentGrade {
 		assertArrayEquals(actual, expected);
 	}
 	
+	@Test
+	public void testGetHardestAndEasiestExists() {
+		assertNotNull(grade.getHardestAndEasiest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	}
 	
-	//m
+	@Test
+	public void testGetHardestAndEasiestReturnsCorrect() {
+		int[][] actual = grade.getHardestAndEasiest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+		int[][] expected = new int[][]{{2,2},{1,4}};
+		assertArrayEquals(actual, expected);
+	}
 	
 	
 	

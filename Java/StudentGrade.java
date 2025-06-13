@@ -106,6 +106,27 @@ public class StudentGrade {
 		return new int[][]{passes, fails};
 	}
 	
+	public static int[][] getHardestAndEasiest(int[][] studentScores) { 
+		int[][] passesAndFails = getPassesAndFails(studentScores);
+		int failures = passesAndFails[1][0];
+		int hardest = 1;
+		
+		int passes = passesAndFails[0][0];
+		int easiest = 1;
+		for(int i = 1; i < passesAndFails.length; i++) {
+			if(passesAndFails[1][i] > failures) {
+				failures = passesAndFails[1][i]; 
+				hardest = i + 1;
+			}
+			
+			if(passesAndFails[0][i] < easiest) {
+				passes = passesAndFails[0][i]; 
+				easiest = i + 1;
+			}
+		}
+		return new int[][]{{hardest, failures},{easiest, passes}};
+	}
+	
 	//public static void displaySubjectSummary() {}
 
 	public static void main(String[] args) {
