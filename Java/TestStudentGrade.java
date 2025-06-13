@@ -127,13 +127,13 @@ public class TestStudentGrade {
 	}
 	
 	@Test
-	public void testGetBestStudentExists() {
-		assertNotNull(grade.getBestStudent(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	public void testGetBestAndWorstStudentExists() {
+		assertNotNull(grade.getBestAndWorstStudent(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
 	}
 	
 	@Test
-	public void testGetBestStudentReturnsCorrect() {
-		int[][] actual = grade.getBestStudent(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+	public void testGetBestAndWorstStudentReturnsCorrect() {
+		int[][] actual = grade.getBestAndWorstStudent(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
 		int[][] expected = new int[][]{{4,227},{1,137}};
 		assertArrayEquals(actual, expected);
 	}
@@ -162,18 +162,13 @@ public class TestStudentGrade {
 		assertEquals(actual, expected);
 	}
 	
+	@Test
+	public void testDisplaySubjectSummaryExists() {
+		assertNotNull(grade.getClassAverage(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void testDisplayClassSummaryExists() {
+		assertNotNull(grade.getClassAverage(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	}
 }

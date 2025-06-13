@@ -164,25 +164,51 @@ public class StudentGrade {
 		return new int[][]{{overallHighest, highestStudent, highestSubject}, {overallLowest, lowestStudent, lowestSubject}};
 	}
 	
-	/*public static void displaySubjectSummary(int[][] studentScores) {
-		int[] highestScores = getHighestScores(studentScores);
-		int[] lowestScores = getLowestScores(studentScores);
+	public static void displaySubjectSummary(int[][] studentScores) {
+		int[][] highestScores = getHighestScores(studentScores);
+		int[][] lowestScores = getLowestScores(studentScores);
 		int[] subjectTotal = getSubjectTotal(studentScores);
 		double[] subjectAverage = getSubjectAverage(studentScores);
 		int[][] passesAndFails = getPassesAndFails(studentScores);
 		
+		String border = "";
+		for(int i = 0; i <= 33; i++) border += "=";
+		
+		System.out.println(border);
 		System.out.println("SUBJECT SUMMARY");
+		
 		for(int i = 0; i < studentScores[0].length; i++) {
+			System.out.println(border);
 			System.out.printf("Subject %d%n", i + 1);
-			System.out.printf("Highest Scoring Student is: Student %d");
+			System.out.println(border);
+			System.out.printf("Highest Scoring Student: Student %d%nScore: %d%n%n", highestScores[1][i], highestScores[0][i]);
+			System.out.printf("Lowest Scoring Student: Student %d%nScore: %d%n%n", lowestScores[1][i], lowestScores[0][i]);
+			System.out.printf("Total Score: %d%n", subjectTotal[i]);
+			System.out.printf("Average Score: %.2f%n", subjectAverage[i]);
+			System.out.printf("Number of Passes: %d%n", passesAndFails[0][i]);
+			System.out.printf("Number of Fails: %d%n", passesAndFails[1][i]);
+			System.out.println(border);
+			System.out.println();
 		}
 		
-		int[][] hardestAndEasiest = getHardestAndEasiest(studentScores);
-		int[][] overallHighestAndLowest = getOverallHighestAndLowest(studentScores);
+		int[] hardest = getHardestAndEasiest(studentScores)[0];
+		int[] easiest = getHardestAndEasiest(studentScores)[1];
+		int[] overallHighest = getOverallHighestAndLowest(studentScores)[0];
+		int[] overallLowest = getOverallHighestAndLowest(studentScores)[1];
 		
-	}*/
+		border = "";
+		for(int i = 0; i <= 33; i++) border += "*";
+		System.out.println(border);
+		System.out.printf("Hardest Subject: Subject %d%nFailures: %d%n%n", hardest[0], hardest[1]);
+		
+		System.out.printf("Easiest Subject: Subject %d%nPasses: %d%n%n", easiest[0], easiest[1]);
+		
+		System.out.printf("Overall Highest Score: %d%nScored by Student: %d%nIn Subject %d%n%n", overallHighest[0], overallHighest[1], overallHighest[2]);
+		System.out.printf("Overall Lowest Score: %d%nScored by Student: %d%nIn Subject: %d%n", overallLowest[0], overallLowest[1], overallLowest[2]);	
+		System.out.println(border);
+	}
 	
-	public static int[][] getBestStudent(int[][] studentScores) {
+	public static int[][] getBestAndWorstStudent(int[][] studentScores) {
 		int bestStudentTotal = Integer.MIN_VALUE;
 		int bestStudent = 1;
 		
@@ -219,7 +245,30 @@ public class StudentGrade {
 		return (double)getClassTotal(studentScores) / studentScores.length;
 	}
 	
-	//public static void displaySubjectSummary() {}
+	public static void displayClassSummary(int[][] studentScores) {
+		int[] bestStudent = getBestAndWorstStudent(studentScores)[0];
+		int[] worstStudent = getBestAndWorstStudent(studentScores)[1];
+		int classTotal = getClassTotal(studentScores);
+		double classAverage = getClassAverage(studentScores);
+		
+		String border = "";
+		for(int i = 0; i <= 35; i++) border += "=";
+		
+		System.out.println(border);
+		System.out.println("CLASS SUMMARY");
+		System.out.println(border);
+
+		
+		System.out.printf("Best Graduating Student: Student %d%nScore: %d%n", bestStudent[0], bestStudent[1]);
+		System.out.println(border);
+		
+		System.out.printf("Worst Graduating Student: Student %d%nScore: %d%n", worstStudent[0], worstStudent[1]);
+		System.out.println(border);
+		
+		System.out.printf("Class Total Score: %d%n", classTotal);	
+		System.out.printf("Class Average Score: %.2f%n", classAverage);	
+		System.out.println(border);
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -290,23 +339,74 @@ public class StudentGrade {
 			
 			while(true) {
 				try {
-					System.out.print("Enter 1 to see scores table\n--> ");
+					System.out.print("1. Scores table\n2. Subject Summary\n3. Class SUmmary\n0.Exit\n--> ");
+				
 					int ready = sc.nextInt();
-					if(ready != 1) {
-						System.out.println("Invalid! Enter 1...");
-						continue;
+					System.out.println();
+					switch(ready) {
+						case 1: 
+							displayDetails(total, average, positions, studentScores);
+							while(true) {
+								System.out.print("\n0. Back\n--> ");
+								String back = sc.next().trim();
+								try {
+									if(Integer.parseInt(back) == 0) break;
+									else System.out.println("Invalid...");
+									continue;
+								} catch(Exception e) {
+									System.out.println("Invalid...");
+								}
+							} 
+							break;
+							
+						case 2: 
+							displaySubjectSummary(studentScores); 
+							while(true) {
+								System.out.print("\n0. Back\n--> ");
+								String back = sc.next().trim();
+								try {
+									if(Integer.parseInt(back) == 0) break;
+									else System.out.println("Invalid...");
+									continue;
+								} catch(Exception e) {
+									System.out.println("Invalid...");
+								}
+							}
+							break;
+							
+						case 3: 
+							displayClassSummary(studentScores);
+							while(true) {
+								System.out.print("\n0. Back\n--> ");
+								String back = sc.next().trim();
+								try {
+									if(Integer.parseInt(back) == 0) break;
+									else System.out.println("Invalid...");
+									continue;
+								} catch(Exception e) {
+									System.out.println("Invalid...");
+								}
+							}
+							break;
+							
+						case 0: 
+							System.out.println();
+							System.out.println("Exiting...");
+							System.exit(0);
+							
+						default: 
+							System.out.println("Invalid! Check options...");
+							System.out.println();
+							continue;
 					}
 					System.out.println();
-					break;
+					
 				} catch(Exception e) {
-					System.out.println("Invalid! Enter 1...");
+					System.out.println("Invalid! Check options...");
 					System.out.println();
 					sc.nextLine();
 				}
-			}
-			displayDetails(total, average, positions, studentScores);
-			
-			break;
+			}			
 		}
 	}
 }
