@@ -49,8 +49,8 @@ public class TestStudentGrade {
 	
 	@Test
 	public void testGetHighestScoresReturnsCorrect() {
-		int[] actual = grade.getHighestScores(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
-		int[] expected = new int[]{98,83,66};
+		int[][] actual = grade.getHighestScores(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+		int[][] expected = new int[][]{{98,83,66},{	2,4,4}};
 		assertArrayEquals(actual, expected);
 	}
 	
@@ -61,8 +61,8 @@ public class TestStudentGrade {
 	
 	@Test
 	public void testGetLowestScoresReturnsCorrect() {
-		int[] actual = grade.getLowestScores(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
-		int[] expected = new int[]{67,21,27};
+		int[][] actual = grade.getLowestScores(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+		int[][] expected = new int[][]{{67,21,27},{1,1,3}};
 		assertArrayEquals(actual, expected);
 	}
 	
@@ -115,13 +115,13 @@ public class TestStudentGrade {
 	}
 	
 	@Test
-	public void testGetOverallHighestExists() {
-		assertNotNull(grade.getOverallHighest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	public void testGetOverallHighestAndLowestExists() {
+		assertNotNull(grade.getOverallHighestAndLowest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
 	}
 	
 	@Test
-	public void testGetOverallHighestReturnsCorrect() {
-		int[][] actual = grade.getOverallHighest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+	public void testGetOverallHighestAndLowestReturnsCorrect() {
+		int[][] actual = grade.getOverallHighestAndLowest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
 		int[][] expected = new int[][]{{98,2,1},{21,1,2}};
 		assertArrayEquals(actual, expected);
 	}

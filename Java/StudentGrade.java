@@ -53,26 +53,36 @@ public class StudentGrade {
 		System.out.println(border);
 	}
 	
-	public static int[] getHighestScores(int[][] studentScores) {
+	public static int[][] getHighestScores(int[][] studentScores) {
 		int[] highestScores = new int[studentScores[0].length];
+		int[] index = new int[studentScores[0].length];
 		for(int i = 0; i < studentScores[0].length; i++) {
 			highestScores[i] = studentScores[0][i];
-			for(int j = 1; j < studentScores.length; j++) {
-				if(studentScores[j][i] > highestScores[i]) highestScores[i] = studentScores[j][i];
+			index[i] = 1;
+			for(int j = 0; j < studentScores.length; j++) {
+				if(studentScores[j][i] > highestScores[i]) {
+					highestScores[i] = studentScores[j][i];
+					index[i] = j + 1;
+				}
 			}
 		}
-		return highestScores;	
+		return new int[][]{highestScores,index};	
 	}
 	
-	public static int[] getLowestScores(int[][] studentScores) {
+	public static int[][] getLowestScores(int[][] studentScores) {
 		int[] lowestScores = new int[studentScores[0].length];
+		int[] index = new int[studentScores[0].length];
 		for(int i = 0; i < studentScores[0].length; i++) {
 			lowestScores[i] = studentScores[0][i];
-			for(int j = 1; j < studentScores.length; j++) {
-				if(studentScores[j][i] < lowestScores[i]) lowestScores[i] = studentScores[j][i];
+			index[i] = 1;
+			for(int j = 0; j < studentScores.length; j++) {
+				if(studentScores[j][i] < lowestScores[i]) {
+					lowestScores[i] = studentScores[j][i];
+					index[i] = j + 1;
+				}
 			}
 		}
-		return lowestScores;	
+		return new int[][]{lowestScores,index};	
 	}
 	
 	public static int[] getSubjectTotal(int[][] studentScores) {
@@ -127,7 +137,7 @@ public class StudentGrade {
 		return new int[][]{{hardest, failures},{easiest, passes}};
 	}
 	
-	public static int[][] getOverallHighest(int[][] studentScores) {
+	public static int[][] getOverallHighestAndLowest(int[][] studentScores) {
 		int overallHighest = studentScores[0][0];
 		int highestStudent = 1;
 		int highestSubject = 1;
@@ -153,6 +163,24 @@ public class StudentGrade {
 		}
 		return new int[][]{{overallHighest, highestStudent, highestSubject}, {overallLowest, lowestStudent, lowestSubject}};
 	}
+	
+	/*public static void displaySubjectSummary(int[][] studentScores) {
+		int[] highestScores = getHighestScores(studentScores);
+		int[] lowestScores = getLowestScores(studentScores);
+		int[] subjectTotal = getSubjectTotal(studentScores);
+		double[] subjectAverage = getSubjectAverage(studentScores);
+		int[][] passesAndFails = getPassesAndFails(studentScores);
+		
+		System.out.println("SUBJECT SUMMARY");
+		for(int i = 0; i < studentScores[0].length; i++) {
+			System.out.printf("Subject %d%n", i + 1);
+			System.out.printf("Highest Scoring Student is: Student %d");
+		}
+		
+		int[][] hardestAndEasiest = getHardestAndEasiest(studentScores);
+		int[][] overallHighestAndLowest = getOverallHighestAndLowest(studentScores);
+		
+	}*/
 	
 	public static int[][] getBestStudent(int[][] studentScores) {
 		int bestStudentTotal = Integer.MIN_VALUE;
