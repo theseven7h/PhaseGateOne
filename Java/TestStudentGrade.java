@@ -78,7 +78,29 @@ public class TestStudentGrade {
 		assertArrayEquals(actual, expected);
 	}
 	
+	@Test
+	public void testGetSubjectAverageExists() {
+		assertNotNull(grade.getSubjectAverage(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	}
 	
+	@Test
+	public void testGetSubjectAverageReturnsCorrect() {
+		double[] actual = grade.getSubjectAverage(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+		double[] expected = new double[]{84,50,49.5};
+		assertArrayEquals(actual, expected);
+	}
+	
+	@Test
+	public void testGetPassesAndFailsExists() {
+		assertNotNull(grade.getPassesAndFails(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	}
+	
+	@Test
+	public void testGetPassesAndFailsReturnsCorrect() {
+		int[][] actual = grade.getPassesAndFails(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+		int[][] expected = new int[][]{{4,2,2},{0,2,2}};
+		assertArrayEquals(actual, expected);
+	}
 	
 	
 	

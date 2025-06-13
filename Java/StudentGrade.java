@@ -76,13 +76,34 @@ public class StudentGrade {
 	}
 	
 	public static int[] getSubjectTotal(int[][] studentScores) {
-		int totals[] = new int[studentScores[0].length];
+		int[] totals = new int[studentScores[0].length];
 		for(int i = 0; i < studentScores[0].length; i++) {
 			for(int j = 0; j < studentScores.length; j++) {
 				totals[i] += studentScores[j][i];
 			}
 		}
 		return totals;
+	}
+	
+	public static double[] getSubjectAverage(int[][] studentScores) {
+		int[] totals = getSubjectTotal(studentScores);
+		double[] averages = new double[studentScores[0].length];
+		for(int i = 0; i < studentScores[0].length; i++) {
+			averages[i] = (double)totals[i] / studentScores.length;
+		}
+		return averages;
+	}
+	
+	public static int[][] getPassesAndFails(int[][] studentScores) {
+		int[] passes = new int[studentScores[0].length];
+		int[] fails = new int[studentScores[0].length];
+		for(int i = 0; i < studentScores[0].length; i++) {
+			for(int j = 0; j < studentScores.length; j++) {
+				if(studentScores[j][i] >= 50) passes[i]++;
+				else fails[i]++;
+			}
+		}
+		return new int[][]{passes, fails};
 	}
 	
 	//public static void displaySubjectSummary() {}
