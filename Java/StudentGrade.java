@@ -137,7 +137,7 @@ public class StudentGrade {
 		int lowestSubject = 1;
 		
 		for(int i = 0; i < studentScores.length; i++) {
-			for(int j = 0; j < studentScores[0].length; j++) {
+			for(int j = 0; j < studentScores[i].length; j++) {
 				if(studentScores[i][j] > overallHighest) {
 					overallHighest = studentScores[i][j];
 					highestStudent = i + 1;
@@ -152,6 +152,31 @@ public class StudentGrade {
 			}
 		}
 		return new int[][]{{overallHighest, highestStudent, highestSubject}, {overallLowest, lowestStudent, lowestSubject}};
+	}
+	
+	public static int[][] getBestStudent(int[][] studentScores) {
+		int bestStudentTotal = Integer.MIN_VALUE;
+		int bestStudent = 1;
+		
+		int worstStudentTotal = Integer.MAX_VALUE;
+		int worstStudent = 1;
+		
+		for(int i = 0; i < studentScores.length; i++) {
+			int sum = 0;
+			for(int j = 0; j < studentScores[i].length; j++) {
+				sum += studentScores[i][j];
+			}
+			if(sum > bestStudentTotal) {
+				bestStudentTotal = sum;
+				bestStudent = i + 1;
+			}
+			
+			if(sum < worstStudentTotal) {
+				worstStudentTotal = sum;
+				worstStudent = i + 1;
+			}
+		}
+		return new int[][]{{bestStudent, bestStudentTotal}, {worstStudent, worstStudentTotal}};
 	}
 	
 	//public static void displaySubjectSummary() {}
