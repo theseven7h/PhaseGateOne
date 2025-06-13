@@ -127,6 +127,33 @@ public class StudentGrade {
 		return new int[][]{{hardest, failures},{easiest, passes}};
 	}
 	
+	public static int[][] getOverallHighest(int[][] studentScores) {
+		int overallHighest = studentScores[0][0];
+		int highestStudent = 1;
+		int highestSubject = 1;
+		
+		int overallLowest = studentScores[0][0];
+		int lowestStudent = 1;
+		int lowestSubject = 1;
+		
+		for(int i = 0; i < studentScores.length; i++) {
+			for(int j = 0; j < studentScores[0].length; j++) {
+				if(studentScores[i][j] > overallHighest) {
+					overallHighest = studentScores[i][j];
+					highestStudent = i + 1;
+					highestSubject = j + 1;
+				}
+				
+				if(studentScores[i][j] < overallLowest) {
+					overallLowest = studentScores[i][j];
+					lowestStudent = i + 1;
+					lowestSubject = j + 1;
+				}
+			}
+		}
+		return new int[][]{{overallHighest, highestStudent, highestSubject}, {overallLowest, lowestStudent, lowestSubject}};
+	}
+	
 	//public static void displaySubjectSummary() {}
 
 	public static void main(String[] args) {

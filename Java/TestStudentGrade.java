@@ -114,6 +114,18 @@ public class TestStudentGrade {
 		assertArrayEquals(actual, expected);
 	}
 	
+	@Test
+	public void testGetOverallHighestExists() {
+		assertNotNull(grade.getOverallHighest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}}));
+	}
+	
+	@Test
+	public void testGetOverallHighestReturnsCorrect() {
+		int[][] actual = grade.getOverallHighest(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
+		int[][] expected = new int[][]{{98,2,1},{21,1,2}};
+		assertArrayEquals(actual, expected);
+	}
+	
 	
 	
 	
