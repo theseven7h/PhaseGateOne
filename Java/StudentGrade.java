@@ -53,14 +53,6 @@ public class StudentGrade {
 		System.out.println(border);
 	}
 	
-	public static int getHighestIn(int[][] studentScores, int subject) {
-		int highest = studentScores[0][subject];	
-		for(int i = 1; i < studentScores[subject].length; i++) {
-			if(studentScores[i][subject] > highest) highest = studentScores[i][subject];
-		}
-		return highest;	
-	}
-	
 	public static int[] getHighestScores(int[][] studentScores) {
 		int[] highestScores = new int[studentScores[0].length];
 		for(int i = 0; i < studentScores[0].length; i++) {
@@ -71,6 +63,29 @@ public class StudentGrade {
 		}
 		return highestScores;	
 	}
+	
+	public static int[] getLowestScores(int[][] studentScores) {
+		int[] lowestScores = new int[studentScores[0].length];
+		for(int i = 0; i < studentScores[0].length; i++) {
+			lowestScores[i] = studentScores[0][i];
+			for(int j = 1; j < studentScores.length; j++) {
+				if(studentScores[j][i] < lowestScores[i]) lowestScores[i] = studentScores[j][i];
+			}
+		}
+		return lowestScores;	
+	}
+	
+	public static int[] getSubjectTotal(int[][] studentScores) {
+		int totals[] = new int[studentScores[0].length];
+		for(int i = 0; i < studentScores[0].length; i++) {
+			for(int j = 0; j < studentScores.length; j++) {
+				totals[i] += studentScores[j][i];
+			}
+		}
+		return totals;
+	}
+	
+	//public static void displaySubjectSummary() {}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
