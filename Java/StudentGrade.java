@@ -179,6 +179,18 @@ public class StudentGrade {
 		return new int[][]{{bestStudent, bestStudentTotal}, {worstStudent, worstStudentTotal}};
 	}
 	
+	public static int getClassTotal(int[][] studentScores) {
+		int classTotal = 0;
+		for(int i = 0; i < studentScores.length; i++) {
+			classTotal += getTotal(studentScores[i]);
+		}
+		return classTotal;
+	}
+	
+	public static double getClassAverage(int[][] studentScores) {
+		return (double)getClassTotal(studentScores) / studentScores.length;
+	}
+	
 	//public static void displaySubjectSummary() {}
 
 	public static void main(String[] args) {
