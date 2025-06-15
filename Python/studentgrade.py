@@ -151,6 +151,9 @@ def get_class_total(student_scores):
 		class_total += get_total(student_scores[i])
 	return class_total
 
+def get_class_average(student_scores):
+	return get_class_total(student_scores) / len(student_scores)
+
 def main():
 	student_scores = []
 	while True:

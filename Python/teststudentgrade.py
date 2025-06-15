@@ -99,6 +99,14 @@ class TestStudentGrade(TestCase):
 		actual = studentgrade.get_class_total(self.student_scores)
 		expected = 734
 		self.assertEqual(actual, expected)
+		
+	def test_get_class_average_exists(self):
+		self.assertIsNotNone(studentgrade.get_class_average(self.student_scores))
+		
+	def test_get_class_average(self):
+		actual = studentgrade.get_class_average(self.student_scores)
+		expected = 183.5
+		self.assertEqual(actual, expected)
 	
 	
 	
