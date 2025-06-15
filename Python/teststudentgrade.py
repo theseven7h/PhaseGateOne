@@ -75,6 +75,14 @@ class TestStudentGrade(TestCase):
 		actual = studentgrade.get_hardest_and_easiest(self.student_scores)
 		expected = [[2,2],[1,4]]
 		self.assertEqual(actual, expected)
+		
+	def test_get_overall_highest_and_lowest_exists(self):
+		self.assertIsNotNone(studentgrade.get_overall_highest_and_lowest(self.student_scores))
+		
+	def test_get_overall_highest_and_lowest(self):
+		actual = studentgrade.get_overall_highest_and_lowest(self.student_scores)
+		expected = [[98,2,1],[21,1,2]]
+		self.assertEqual(actual, expected)
 	
 	
 	

@@ -102,6 +102,27 @@ def get_hardest_and_easiest(student_scores):
 			easiest = i + 1
 	return [[hardest, failures],[easiest, passes]]
 
+def get_overall_highest_and_lowest(student_scores):
+	overall_highest = student_scores[0][0]
+	highest_student = 1
+	highest_subject = 1
+	
+	overall_lowest = student_scores[0][0];
+	lowest_student = 1
+	lowest_subject = 1
+	
+	for i in range(len(student_scores)):
+		for j in range(len(student_scores[0])):
+			if student_scores[i][j] > overall_highest:
+				overall_highest = student_scores[i][j]
+				highest_student = i + 1
+				highest_subject = j + 1
+			
+			if student_scores[i][j] < overall_lowest:
+				overall_lowest = student_scores[i][j]
+				lowest_student = i + 1
+				lowest_subject = j + 1
+	return [[overall_highest, highest_student, highest_subject], [overall_lowest, lowest_student, lowest_subject]]
 
 def main():
 	student_scores = []
