@@ -8,9 +8,9 @@ public class CheckOut {
 	static Scanner sc = new Scanner(System.in);
 
 	public static String getCustomerName() {
-		System.out.print("What is the customer's name: ");
-		String customerName = sc.nextLine().trim();
-		return customerName;	
+			System.out.print("What is the customer's name: ");
+			String customerName = sc.nextLine().trim();
+			return customerName;	
 	}
 	
 	public static String getItemBought() {
@@ -63,7 +63,7 @@ public class CheckOut {
 	}
 	
 	public static String getCashierName() {
-		System.out.print("What is the your name: ");
+		System.out.print("What is your name: ");
 		String cashierName = sc.nextLine().trim();
 		return cashierName;	
 	}
@@ -84,8 +84,8 @@ public class CheckOut {
 			String input = sc.nextLine();
 			try {
 				discount = Double.parseDouble(input);
-				if (discount <= 0) {
-					System.out.println("Discount cannot be less than one");
+				if (discount < 0 || discount > 100) {
+					System.out.println("Discount cannot be less than zero or more than hundred");
 					continue;
 				}
 				break;
@@ -136,6 +136,8 @@ public class CheckOut {
 			if(response.equals("yes") || response.equals("no")) {
 				break;
 			}
+			System.out.println();
+			System.out.println("Invalid...");
 		}
 		return response.equals("yes");
 	}
@@ -144,7 +146,7 @@ public class CheckOut {
 		HashMap<String, String> details = new HashMap<>();
 		ArrayList<HashMap<String, String>> allDetails = new ArrayList<>();	
 		
-		String customerName = getCustomerName();;
+		String customerName = getCustomerName();
 		String itemBought = "";
 		int quantity = 0;
 		double pricePerUnit = 0;
@@ -215,7 +217,7 @@ TEL: 03293828343
 		System.out.println(sym2);
 		System.out.printf("%40s%14.2f%n", "Sub Total:", subtotal);
 		System.out.printf("%40s%14.2f%n", "Discount:", discount);
-		System.out.printf("%40s%14.2f%n", "VAT @ 17.50%:", vat);
+		System.out.printf("%40s%14.2f%n", "VAT @ 7.50%:", vat);
 		
 		System.out.println(sym);
 		
