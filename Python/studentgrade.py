@@ -61,6 +61,20 @@ def get_lowest_scores(student_scores):
 				index[i] = j + 1
 	return [lowest_scores,index]
 
+def get_subject_total(student_scores):
+	totals = [0] * len(student_scores[0]) 
+	for i in range(len(student_scores[0])):
+		for j in range(len(student_scores)):
+			totals[i] += student_scores[j][i]
+	return totals
+
+def get_subject_average(student_scores):
+	totals = get_subject_total(student_scores);
+	averages = [0] * len(totals)
+	for i in range(len(student_scores[0])):
+		averages[i] = totals[i] / len(student_scores)
+	return averages
+
 def main():
 	student_scores = []
 	while True:
