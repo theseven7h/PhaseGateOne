@@ -107,7 +107,7 @@ const getSubjectAverage = (studentScores) => {
 const getPassesAndFails = (studentScores) => {
 	let passes = [];
 	let fails = [];
-	for(let i in studentScores) {
+	for(let i in studentScores[0]) {
 		passes.push([0]);
 		fails.push([0]);
 	}
