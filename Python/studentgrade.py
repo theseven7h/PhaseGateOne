@@ -16,7 +16,7 @@ def get_positions(average):
 				count += 1
 		positions[i] = count
 	return positions
-
+	
 def display_details(total, average, positions, studentScores):
 	border = "=" * (36 + (len(studentScores) * 10))
 	
@@ -74,6 +74,16 @@ def get_subject_average(student_scores):
 	for i in range(len(student_scores[0])):
 		averages[i] = totals[i] / len(student_scores)
 	return averages
+
+def get_passes_and_fails(student_scores):
+	passes = [0] * len(student_scores[0])
+	fails = [0] * len(student_scores[0])
+	
+	for i in range(len(student_scores[0])):
+		for j in range(len(student_scores)):
+			if student_scores[j][i] >= 50: passes[i] += 1
+			else: fails[i] += 1
+	return [passes, fails]
 
 def main():
 	student_scores = []

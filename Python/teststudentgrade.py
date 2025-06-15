@@ -59,6 +59,14 @@ class TestStudentGrade(TestCase):
 		actual = studentgrade.get_subject_average(self.student_scores)
 		expected = [84,50,49.5]
 		self.assertEqual(actual, expected)
+		
+	def test_get_passes_and_fails_exists(self):
+		self.assertIsNotNone(studentgrade.get_passes_and_fails(self.student_scores))
+		
+	def test_get_passes_and_fails(self):
+		actual = studentgrade.get_passes_and_fails(self.student_scores)
+		expected = [[4,2,2],[0,2,2]]
+		self.assertEqual(actual, expected)
 	
 	
 	
