@@ -124,6 +124,27 @@ def get_overall_highest_and_lowest(student_scores):
 				lowest_subject = j + 1
 	return [[overall_highest, highest_student, highest_subject], [overall_lowest, lowest_student, lowest_subject]]
 
+def get_best_and_worst_student(student_scores):
+	best_student_total = -2000000000000000
+	best_student = 1
+	
+	worst_student_total = 2000000000000000
+	worst_student = 1
+	
+	for i in range(len(student_scores)):
+		sum = 0
+		for j in range(len(student_scores[0])):
+			sum += student_scores[i][j]
+			
+		if sum > best_student_total:
+			best_student_total = sum
+			best_student = i + 1
+		
+		if sum < worst_student_total:
+			worst_student_total = sum
+			worst_student = i + 1
+	return [[best_student, best_student_total], [worst_student, worst_student_total]]
+
 def main():
 	student_scores = []
 	while True:
