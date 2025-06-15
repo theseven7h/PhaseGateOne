@@ -91,6 +91,14 @@ class TestStudentGrade(TestCase):
 		actual = studentgrade.get_best_and_worst_student(self.student_scores)
 		expected = [[4,227],[1,137]]
 		self.assertEqual(actual, expected)
+		
+	def test_get_class_total_exists(self):
+		self.assertIsNotNone(studentgrade.get_class_total(self.student_scores))
+		
+	def test_get_class_total(self):
+		actual = studentgrade.get_class_total(self.student_scores)
+		expected = 734
+		self.assertEqual(actual, expected)
 	
 	
 	

@@ -145,6 +145,12 @@ def get_best_and_worst_student(student_scores):
 			worst_student = i + 1
 	return [[best_student, best_student_total], [worst_student, worst_student_total]]
 
+def get_class_total(student_scores):
+	class_total = 0
+	for i in range(len(student_scores)):
+		class_total += get_total(student_scores[i])
+	return class_total
+
 def main():
 	student_scores = []
 	while True:
