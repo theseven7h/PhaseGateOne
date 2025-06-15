@@ -1,4 +1,3 @@
-//const {DateTime} = require("luxon");
 const input = require("prompt-sync");
 const prompt = input();
 
@@ -77,8 +76,8 @@ const getDiscountAmount = () => {
 			console.log("Invalid discount! Try again");
 			continue;
 		}
-		if (discount <= 0) {
-			console.log("Discount cannot be less than one");
+		if (discount < 0 || discount > 100) {
+			console.log("Discount cannot be less than one or more than hundred");
 			continue;
 		}
 		break;	
