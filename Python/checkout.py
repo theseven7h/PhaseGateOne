@@ -57,8 +57,8 @@ def get_discount_amount(subtotal):
 		entry = input("How much discount will they get(%): ")
 		try:
 			discount = float(entry)
-			if discount <= 0:
-				print("Discount cannot be less than one")
+			if discount < 0 or discount > 100:
+				print("Discount cannot be less than zero or more than hundred")
 				continue
 			break
 		except ValueError:
