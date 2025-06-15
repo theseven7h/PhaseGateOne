@@ -85,6 +85,24 @@ def get_passes_and_fails(student_scores):
 			else: fails[i] += 1
 	return [passes, fails]
 
+def get_hardest_and_easiest(student_scores):
+	passes_and_fails = get_passes_and_fails(student_scores)
+	failures = passes_and_fails[1][0]
+	hardest = 1
+	
+	passes = passes_and_fails[0][0]
+	easiest = 1
+	for i in range(len(passes_and_fails)):
+		if passes_and_fails[1][i] > failures:
+			failures = passes_and_fails[1][i]
+			hardest = i + 1
+		
+		if passes_and_fails[0][i] < easiest:
+			passes = passes_and_fails[0][i]
+			easiest = i + 1
+	return [[hardest, failures],[easiest, passes]]
+
+
 def main():
 	student_scores = []
 	while True:
