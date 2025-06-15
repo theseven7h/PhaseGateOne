@@ -47,12 +47,18 @@ class TestStudentGrade(TestCase):
 	def test_get_subject_total_exists(self):
 		self.assertIsNotNone(studentgrade.get_subject_total(self.student_scores))
 		
-	def test_get_subject_total_scores(self):
+	def test_get_subject_total(self):
 		actual = studentgrade.get_subject_total(self.student_scores)
 		expected = [336,200,198]
 		self.assertEqual(actual, expected)
 	
-	
+	def test_get_subject_average_exists(self):
+		self.assertIsNotNone(studentgrade.get_subject_average(self.student_scores))
+		
+	def test_get_subject_average(self):
+		actual = studentgrade.get_subject_average(self.student_scores)
+		expected = [84,50,49.5]
+		self.assertEqual(actual, expected)
 	
 	
 	
