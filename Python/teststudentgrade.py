@@ -26,5 +26,19 @@ class TestStudentGrade(TestCase):
 		expected = [2,1,3]
 		self.assertEqual(actual, expected)
 		
-	
+	def test_get_highest_scores_exists(self):
+		self.assertIsNotNone(studentgrade.get_highest_scores([[67,21,49],[98,62,56],[93,34,27],[78,83,66]]))
+		
+	def test_get_highest_scores(self):
+		actual = studentgrade.get_highest_scores([[67,21,49],[98,62,56],[93,34,27],[78,83,66]])
+		expected = [[98,83,66],[2,4,4]]
+		self.assertEqual(actual, expected)
+		
+	def test_get_lowest_scores_exists(self):
+		self.assertIsNotNone(studentgrade.get_lowest_scores([[67,21,49],[98,62,56],[93,34,27],[78,83,66]]))
+		
+	def test_get_lowest_scores(self):
+		actual = studentgrade.get_lowest_scores([[67,21,49],[98,62,56],[93,34,27],[78,83,66]])
+		expected = [[67,21,27],[1,1,3]]
+		self.assertEqual(actual, expected)
 	

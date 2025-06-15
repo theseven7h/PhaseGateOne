@@ -37,6 +37,30 @@ def display_details(total, average, positions, studentScores):
 		print()
 	print(border)
 
+def get_highest_scores(student_scores):
+	highest_scores = [0] * len(student_scores[0])
+	index = [0] * len(student_scores[0])
+	for i in range(len(student_scores[0])):
+		highest_scores[i] = student_scores[0][i]
+		index[i] = 1
+		for j in range(len(student_scores)):
+			if student_scores[j][i] > highest_scores[i]:
+				highest_scores[i] = student_scores[j][i]
+				index[i] = j + 1
+	return [highest_scores,index]	
+
+def get_lowest_scores(student_scores):
+	lowest_scores = [0] * len(student_scores[0])
+	index = [0] * len(student_scores[0])
+	for i in range(len(student_scores[0])):
+		lowest_scores[i] = student_scores[0][i]
+		index[i] = 1
+		for j in range(len(student_scores)):
+			if student_scores[j][i] < lowest_scores[i]:
+				lowest_scores[i] = student_scores[j][i]
+				index[i] = j + 1
+	return [lowest_scores,index]
+
 def main():
 	student_scores = []
 	while True:
