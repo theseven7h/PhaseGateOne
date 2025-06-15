@@ -124,6 +124,45 @@ def get_overall_highest_and_lowest(student_scores):
 				lowest_subject = j + 1
 	return [[overall_highest, highest_student, highest_subject], [overall_lowest, lowest_student, lowest_subject]]
 
+def display_subject_summary(student_scores):
+	highest_scores = get_highest_scores(student_scores)
+	lowest_scores = get_lowest_scores(student_scores)
+	subject_total = get_subject_total(student_scores)
+	subject_average = get_subject_average(student_scores)
+	passes_and_fails = get_passes_and_fails(student_scores)
+	
+	border = "=" * 34
+	
+	print(border)
+	print("SUBJECT SUMMARY")
+	
+	for i in range(len(student_scores[0])):
+		print(border)
+		print(f"Subject {(i + 1)}")
+		print(border)
+		print(f"Highest Scoring Student: Student {highest_scores[1][i]}\nScore: {highest_scores[0][i]}\n")
+		print(f"Lowest Scoring Student: Student {lowest_scores[1][i]}\nScore: {lowest_scores[0][i]}\n")
+		print(f"Total Score: {subject_total[i]}")
+		print(f"Average Score: {subject_average[i]:.2f}\n")
+		print(f"Number of Passes: {passes_and_fails[0][i]}")
+		print(f"Number of Fails: {passes_and_fails[1][i]}")
+		print(border)
+		print()
+	
+	hardest = get_hardest_and_easiest(student_scores)[0]
+	easiest = get_hardest_and_easiest(student_scores)[1]
+	overall_highest = get_overall_highest_and_lowest(student_scores)[0]
+	overall_lowest = get_overall_highest_and_lowest(student_scores)[1]
+	
+	border = "*" * 34
+	print(border)
+	print(f"Hardest Subject: Subject {hardest[0]}\nFailures: {hardest[1]}\n")
+	print(f"Easiest Subject: Subject {easiest[0]}\nPasses: {easiest[1]}\n")
+	print(f"Overall Highest Score: {overall_highest[0]}\nScored by Student:{overall_highest[1]}\nIn Subject: {overall_highest[2]}\n")
+	print(f"Overall Lowest Score: {overall_lowest[0]}\nScored by Student:{overall_lowest[1]}\nIn Subject: {overall_lowest[2]}")	
+	print(border)
+	print()
+
 def get_best_and_worst_student(student_scores):
 	best_student_total = -2000000000000000
 	best_student = 1
@@ -153,6 +192,31 @@ def get_class_total(student_scores):
 
 def get_class_average(student_scores):
 	return get_class_total(student_scores) / len(student_scores)
+
+def display_class_summary(student_scores):
+	best_student = get_best_and_worst_student(student_scores)[0]
+	worst_student = get_best_and_worst_student(student_scores)[1]
+	class_total = get_class_total(student_scores)
+	class_average = get_class_average(student_scores)
+	
+	border = "=" * 36
+	
+	print(border)
+	print("CLASS SUMMARY")
+	print(border)
+
+	
+	print(f"Best Graduating Student: Student {best_student[0]}\nScore: {best_student[1]}")
+	print(border)
+	
+	print(f"Worst Graduating Student: Student {worst_student[0]}\nScore: {worst_student[1]}")
+	print(border)
+	
+	print(f"Class Total Score: {class_total}")	
+	print(f"Class Average Score: {class_average:.2f}")	
+	print(border)
+
+
 
 def main():
 	student_scores = []
@@ -226,12 +290,60 @@ def main():
 		positions = get_positions(average)
 		print()
 		
-		print(total, average, positions)
+		while True:
+			print("1. Scores table\n2. Subject Summary\n3. Class SUmmary\n0.Exit")
+			
+			ready = input("--> ").strip()				
+			print()
+			match(ready):
+				case "1": 
+					display_details(total, average, positions, student_scores)
+					while True:
+						print("\n0. Back")
+						back = input("--> ").strip()
+						
+						if back == "0": break
+						else: print("Invalid...")
+						continue
 					
-		display_details(total, average, positions, student_scores)
-		'''display_subject_summary(student_scores)
-		display_class_summary(student_scores)'''
+				case "2": 
+					display_subject_summary(student_scores)
+					while True:
+						print("\n0. Back")
+						back = input("--> ").strip()
+						
+						if back == "0": break
+						else: print("Invalid...")
+						continue
+					
+				case "3": 
+					display_class_summary(student_scores);
+					while True:
+						print("\n0. Back")
+						back = input("--> ").strip()
+						
+						if back == "0": break
+						else: print("Invalid...")
+						continue
+					
+				case "0": 
+					print()
+					print("Exiting...")
+					import sys
+					sys.exit(0)
+					
+				case _: 
+					print("Invalid! Check options...")
+					print()
+			print()
+			
+			
+			
+			
+			
+			
+			
+			
 		
-		break
 		
-#main()
+main()
