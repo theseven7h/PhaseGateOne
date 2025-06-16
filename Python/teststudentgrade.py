@@ -107,29 +107,3 @@ class TestStudentGrade(TestCase):
 		actual = studentgrade.get_class_average(self.student_scores)
 		expected = 183.5
 		self.assertEqual(actual, expected)
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-	
