@@ -6,7 +6,7 @@ const welcomeUser = () => {
 A space where your thoughts, patterns, 
 and inner voice are gently reflected back to you.
 This isn’t just a personality test. It’s a moment with yourself 
-To understand why you are the way you are — without judgment, without noise.
+To understand why you are the way you are, without judgment, without noise.
 Take a breath. Look inward`;
 	
 	console.log(welcomeMessage);
@@ -379,7 +379,6 @@ The Mirror reveals your edge — refined, bold, and always forward.
 
 const main = () => {
 	
-	
 	while(true) {
 		welcomeUser();
 		console.log();
@@ -389,6 +388,18 @@ const main = () => {
 		navigateMenu(name);
 		let personality = getQuestions(name);
 		console.log();
+		
+		while(true) {
+			console.log("Are you now ready to see yourself? (yes/no)");
+			let ans = prompt("--> ").trim().toLowerCase();
+			if(!["yes", "no"].includes(ans)) {
+				console.log("Wrong input!");
+				continue;
+			}
+			
+			if(ans === "yes") break;
+			console.log("Take your time...");
+		}
 		
 		showResult(personality);
 		break;

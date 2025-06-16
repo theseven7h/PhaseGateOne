@@ -23,12 +23,12 @@ const checkValidity = (entry) => {
 		if(num > 9) {
 			num = Number(String(num).charAt(0)) + Number(String(num).charAt(1));
 		}
-		sumOddPlace += Number(num); 
+		sumEvenPlace += Number(num); 
 	}
 	
 	for(let j = entry.length - 1; j >= 0; j -= 2) {
 		let num = Number(entry.charAt(j));
-		sumEvenPlace += num; 
+		sumOddPlace += num; 
 	}
 	if ((sumEvenPlace + sumOddPlace) % 10 == 0)
 		return "Valid";
