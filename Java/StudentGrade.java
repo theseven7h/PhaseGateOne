@@ -203,7 +203,7 @@ public class StudentGrade {
 		
 		System.out.printf("Easiest Subject: Subject %d%nPasses: %d%n%n", easiest[0], easiest[1]);
 		
-		System.out.printf("Overall Highest Score: %d%nScored by Student: %d%nIn Subject %d%n%n", overallHighest[0], overallHighest[1], overallHighest[2]);
+		System.out.printf("Overall Highest Score: %d%nScored by Student: %d%nIn Subject: %d%n%n", overallHighest[0], overallHighest[1], overallHighest[2]);
 		System.out.printf("Overall Lowest Score: %d%nScored by Student: %d%nIn Subject: %d%n", overallLowest[0], overallLowest[1], overallLowest[2]);	
 		System.out.println(border);
 	}
@@ -289,9 +289,13 @@ public class StudentGrade {
 					int students = Integer.parseInt(studentsEntry);
 					int subjects = Integer.parseInt(subjectsEntry);
 					studentScores = new int[students][subjects];
+					if(students < 1 || subjects < 1) {
+						System.out.println("Invalid!... Less than 1");
+						continue;
+					}
 					break;
 				} catch(Exception e) {
-					System.out.println("Wrong inputs, try again!");
+					System.out.println("Wrong inputs, start again!");
 					System.out.println();
 				}
 			}
@@ -324,7 +328,6 @@ public class StudentGrade {
 							System.out.println();
 						}
 					}
-					
 				}
 			}
 			

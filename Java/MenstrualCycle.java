@@ -37,9 +37,7 @@ public class MenstrualCycle {
 		DateTimeFormatter output = DateTimeFormatter.ofPattern("d MMMM, y");
 		String date = "25/05/2025";
 		LocalDate lcd = LocalDate.parse(date, fmt);
-		
-		
-		
+			
 		System.out.println("Last cycle date: " + lcd.format(output));
 		System.out.println("Expected next cycle: " + getNextCycleDate("25/05/2025", 28).format(output));
 		System.out.println("Expected ovulation: " + getOvulationDate("25/05/2025", 28).format(output));

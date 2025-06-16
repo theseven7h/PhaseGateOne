@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,7 +13,7 @@ public class TestMenstrualCycle {
 
 	@Test
 	public void testGetNextCycleDateFunctionExists() {
-		mc.getNextCycleDate("25/05/2025", 28);
+		assertNotNull(mc.getNextCycleDate("25/05/2025", 28));
 	}
 	
 	@Test
@@ -25,7 +26,7 @@ public class TestMenstrualCycle {
 	
 	@Test
 	public void testGetOvulationDateFunctionExists() {
-		mc.getOvulationDate("25/05/2025", 28);
+		assertNotNull(mc.getOvulationDate("25/05/2025", 28));
 	}
 	
 	@Test
@@ -38,7 +39,7 @@ public class TestMenstrualCycle {
 	
 	@Test
 	public void testGetFertileWindowFunctionExists() {
-		mc.getFertileWindow("25/05/2025", 28);
+		assertNotNull(mc.getFertileWindow("25/05/2025", 28));
 	}
 	
 	@Test
@@ -51,7 +52,7 @@ public class TestMenstrualCycle {
 	
 	@Test
 	public void testGetSafePeriodFunctionExists() {
-		mc.getSafePeriod("25/05/2025", 28);
+		assertNotNull(mc.getSafePeriod("25/05/2025", 28));
 	}
 	
 	@Test

@@ -50,7 +50,7 @@ public class TestStudentGrade {
 	@Test
 	public void testGetHighestScoresReturnsCorrect() {
 		int[][] actual = grade.getHighestScores(new int[][]{{67,21,49},{98,62,56},{93,34,27},{78,83,66}});
-		int[][] expected = new int[][]{{98,83,66},{	2,4,4}};
+		int[][] expected = new int[][]{{98,83,66},{2,4,4}};
 		assertArrayEquals(actual, expected);
 	}
 	
