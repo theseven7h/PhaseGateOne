@@ -45,6 +45,15 @@ public class Phonebook {
 		}
 		return "Phone number does not exist!";
 	}
+	
+	public static String findContactByFirstName(String firstName) {
+		for(int i = 0; i < contactList.size(); i++) {
+			if(contactList.get(i)[0].equals(firstName)) {
+				return "First name: " + contactList.get(i)[0] + "\nLast name: " + contactList.get(i)[1] + "\nPhone number: " + contactList.get(i)[2] + "\n";
+			}
+		}
+		return "Name does not exist!";
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -161,7 +170,33 @@ public class Phonebook {
 						String phoneNum = sc.next().trim();
 						System.out.println();
 						System.out.print(findContactByPhoneNumber(phoneNum));
+						System.out.println();
+
 						if(!findContactByPhoneNumber(phoneNum).equals("Phone number does not exist!"))
+							break;
+					}
+					System.out.println();
+					while(true) {
+						System.out.print("0. Back\n--> ");
+						String back = sc.next().trim();
+						if(back.equals("0"))
+							break;	
+						System.out.println("Invalid! Try again\n");
+					}
+					break;
+					
+				case 4:
+					if(!checkContactListContainsContact()) {
+						System.out.println("Contact list is empty");
+						continue;
+					}
+					while(true) {
+						System.out.print("Enter the first name: ");
+						String name = sc.next().trim();
+						System.out.println();
+						System.out.print(findContactByFirstName(name));
+						System.out.println();
+						if(!findContactByFirstName(name).equals("Name does not exist!"))
 							break;
 					}
 					System.out.println();
