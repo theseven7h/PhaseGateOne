@@ -54,6 +54,19 @@ public class Phonebook {
 		}
 		return "Name does not exist!";
 	}
+	
+	public static String findContactByLastName(String lastName) {
+		for(int i = 0; i < contactList.size(); i++) {
+			if(contactList.get(i)[1].equals(lastName)) {
+				return "First name: " + contactList.get(i)[0] + "\nLast name: " + contactList.get(i)[1] + "\nPhone number: " + contactList.get(i)[2] + "\n";
+			}
+		}
+		return "Name does not exist!";
+	}
+	
+	public static void editContact(String edit, String editChoice, String entry) {
+		contactList.get(Integer.parseInt(edit) - 1)[Integer.parseInt(editChoice) - 1] = entry;
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -61,11 +74,12 @@ public class Phonebook {
 		while(true) {
 			System.out.print("""
 1. Add contact
-2. Remove contact
-3. Find contact by phone number
-4. Find contact by first name
-5. Find contact by last name
-6. Edit contact
+2. View contacts
+3. Remove contact
+4. Find contact by phone number
+5. Find contact by first name
+6. Find contact by last name
+7. Edit contact
 0. Quit
 
 -->\s""");
@@ -74,7 +88,7 @@ public class Phonebook {
 			try {
 				option = sc.nextInt();
 				System.out.println();
-				if(option > 6 || option < 0) {
+				if(option > 7 || option < 0) {
 					System.out.println("Invalid... choose between 0 - 6");
 					System.out.println();
 					continue;
@@ -125,7 +139,24 @@ public class Phonebook {
 					}
 					break;
 					
-				case 2: 
+				case 2:
+					if(!checkContactListContainsContact()) {
+						System.out.println("Contact list is empty");
+						System.out.println();
+						continue;
+					}
+					displayContacts();
+					System.out.println();
+					while(true) {
+						System.out.print("0. Back\n--> ");
+						String back = sc.next().trim();
+						if(back.equals("0"))
+							break;	
+						System.out.println("Invalid! Try again\n");
+					}
+					break;	
+					
+				case 3: 
 					if(!checkContactListContainsContact()) {
 						System.out.println("Contact list is empty");
 						System.out.println();
@@ -133,7 +164,7 @@ public class Phonebook {
 					}
 					displayContacts();
 					while(true) {
-						System.out.print("What contact are you removing: ");
+						System.out.print("Which contact do you want to remove: ");
 						String remove = sc.next().trim();
 						try {
 							if(Integer.parseInt(remove) < 1 || Integer.parseInt(remove) > contactList.size()) {
@@ -160,7 +191,7 @@ public class Phonebook {
 					}
 					break;
 					
-				case 3:
+				case 4:
 					if(!checkContactListContainsContact()) {
 						System.out.println("Contact list is empty");
 						continue;
@@ -185,7 +216,7 @@ public class Phonebook {
 					}
 					break;
 					
-				case 4:
+				case 5:
 					if(!checkContactListContainsContact()) {
 						System.out.println("Contact list is empty");
 						continue;
@@ -208,14 +239,109 @@ public class Phonebook {
 						System.out.println("Invalid! Try again\n");
 					}
 					break;
+					
+				case 6:
+					if(!checkContactListContainsContact()) {
+						System.out.println("Contact list is empty");
+						continue;
+					}
+					while(true) {
+						System.out.print("Enter the last name: ");
+						String name = sc.next().trim();
+						System.out.println();
+						System.out.print(findContactByLastName(name));
+						System.out.println();
+						if(!findContactByLastName(name).equals("Name does not exist!"))
+							break;
+					}
+					System.out.println();
+					while(true) {
+						System.out.print("0. Back\n--> ");
+						String back = sc.next().trim();
+						if(back.equals("0"))
+							break;	
+						System.out.println("Invalid! Try again\n");
+					}
+					break;
+					
+				case 7:
+					if(!checkContactListContainsContact()) {
+						System.out.println("Contact list is empty");
+						continue;
+					}
+					displayContacts();
+					while(true) {
+						System.out.print("Which contact do you want to edit: ");
+						String edit = sc.next().trim();
+						try {
+							if(Integer.parseInt(edit) < 1 || Integer.parseInt(edit) > contactList.size()) {
+								System.out.println("Invalid. Check again...");
+								continue;
+							}
+						} catch(Exception e) {
+							System.out.println("Invalid. Input must be a digit");
+							System.out.println();
+							continue;
+						}
+						
+						while(true) {
+							System.out.print("1. Edit first name\n2. Edit last name\n3. Edit phone number\n0. Back\n--> ");
+							String editChoice = sc.next().trim();
+							System.out.println();
+							switch(editChoice) {
+								case "1": 
+									System.out.print("Enter first name: ");
+									String fName = sc.next().trim();
+									editContact(edit, editChoice, fName);
+									break;
+									
+								case "2": 
+									System.out.print("Enter last name: ");
+									String lName = sc.next().trim();
+									editContact(edit, editChoice, lName);
+									break;
+									
+								case "3": 
+									while(true) {
+										System.out.print("Enter phone number: ");
+										String number = sc.next().trim();
+										System.out.println();
+										try {
+											if(number.length() != 11) {
+												System.out.println("Invalid. Phone number must be 11 digits\n");
+												continue;
+											}
+											Double.parseDouble(number);
+										} catch(Exception e) {
+											System.out.println("Invalid. Phone number must contain only digits");
+											System.out.println();
+											continue;
+										}
+										if(!checkPhoneNumber(number)) {
+											System.out.println("Phone number already exists!");
+											continue;
+										}
+										editContact(edit, editChoice, number);
+										break;
+									}
+									break;
+								
+								case "0":
+									break;
+									
+								default:
+									System.out.println("Invalid... Try again");
+							}
+							break;
+						}
+						break;						
+					}
+					break;
+					
+				case 0:
+					System.exit(0);
 			}
 			System.out.println();
-
 		}
-	
-			
 	}
-	
-	
-	
 }
