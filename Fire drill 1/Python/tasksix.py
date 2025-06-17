@@ -1,0 +1,6 @@
+for num in range(1, 11):
+	if num % 4 == 0:
+		count = 1
+		while count <= 5:
+			print(num ** count, end=" ")
+			count += 1
